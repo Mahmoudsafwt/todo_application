@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/ui/home_screen.dart';
+import 'package:todo_app/ui/settings_provider/sett_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,11 +24,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<SettingsProvider>(context);
     return Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  'assets/images/splash.png',
+                  myProvider.isDark()
+                      ? 'assets/images/splash – 1.png'
+                      : 'assets/images/splash.png',
                 ),
                 fit: BoxFit.fill)),
         child: const Scaffold(
